@@ -363,10 +363,10 @@ tiny random amount.</p>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span> <span class="co"># dimension</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Create a matrix of 10^6 observations in R^100</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(n<span class="sc">*</span>d),n,d)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(n <span class="sc">*</span> d), n, d)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># Second Dataset is a copy of the first with points shifted an infinitesimal</span></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># amount</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>X_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n<span class="sc">*</span>d, <span class="dv">0</span>,.<span class="dv">0001</span>), n,d))</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>X_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> d, <span class="dv">0</span>, .<span class="dv">0001</span>), n, d))</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X)</span></code></pre></div>
 <p>I now want to join these two datasets together. The Euclidean joins
 take 3 hyperparameters: <code>n_bands</code>, <code>band_width</code>,
@@ -376,19 +376,19 @@ and <code>r</code>. Which all have to be chosen for the problem domain
 to understand the probability that two observations at distance of .01
 from each other are indentified as a match at a variety of
 hyperparameter configurations.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">01</span>, <span class="at">n_bands =</span> <span class="dv">5</span>,<span class="at">band_width =</span> <span class="dv">8</span>,<span class="at">r =</span> .<span class="dv">25</span>)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">01</span>, <span class="at">n_bands =</span> <span class="dv">5</span>, <span class="at">band_width =</span> <span class="dv">8</span>, <span class="at">r =</span> .<span class="dv">25</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.9993764</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">1</span>, <span class="at">n_bands =</span> <span class="dv">5</span>,<span class="at">band_width =</span> <span class="dv">8</span>,<span class="at">r =</span> .<span class="dv">25</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">1</span>, <span class="at">n_bands =</span> <span class="dv">5</span>, <span class="at">band_width =</span> <span class="dv">8</span>, <span class="at">r =</span> .<span class="dv">25</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; [1] 0.2141322</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">01</span>, <span class="at">n_bands =</span> <span class="dv">10</span>,<span class="at">band_width =</span> <span class="dv">4</span>,<span class="at">r =</span> .<span class="dv">15</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">01</span>, <span class="at">n_bands =</span> <span class="dv">10</span>, <span class="at">band_width =</span> <span class="dv">4</span>, <span class="at">r =</span> .<span class="dv">15</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; [1] 0.9999999</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">1</span>, <span class="at">n_bands =</span> <span class="dv">10</span>,<span class="at">band_width =</span> <span class="dv">4</span>,<span class="at">r =</span> .<span class="dv">15</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">1</span>, <span class="at">n_bands =</span> <span class="dv">10</span>, <span class="at">band_width =</span> <span class="dv">4</span>, <span class="at">r =</span> .<span class="dv">15</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; [1] 0.4956251</span></span>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">01</span>, <span class="at">n_bands =</span> <span class="dv">40</span>,<span class="at">band_width =</span> <span class="dv">8</span>,<span class="at">r =</span> .<span class="dv">15</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">01</span>, <span class="at">n_bands =</span> <span class="dv">40</span>, <span class="at">band_width =</span> <span class="dv">8</span>, <span class="at">r =</span> .<span class="dv">15</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">1</span>, <span class="at">n_bands =</span> <span class="dv">40</span>,<span class="at">band_width =</span> <span class="dv">8</span>,<span class="at">r =</span> .<span class="dv">15</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">euclidean_probability</span>(.<span class="dv">1</span>, <span class="at">n_bands =</span> <span class="dv">40</span>, <span class="at">band_width =</span> <span class="dv">8</span>, <span class="at">r =</span> .<span class="dv">15</span>)</span>
 <span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; [1] 0.16091</span></span></code></pre></div>
 <p>Using <code>n_bands=40</code>, <code>band_width=8</code>, and
 <code>r=.15</code> seems to provide a good balance between identifying
@@ -400,16 +400,17 @@ two datasets:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>joined_out <span class="ot">&lt;-</span> <span class="fu">euclidean_inner_join</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                     X,</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                     X_2,</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                     <span class="at">threshold =</span> .<span class="dv">01</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                     <span class="at">n_bands =</span> <span class="dv">40</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                     <span class="at">band_width =</span> <span class="dv">8</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                     <span class="at">r=</span>.<span class="dv">15</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>n_matches <span class="ot">&lt;-</span> <span class="fu">nrow</span>(joined_out)</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>time_taken <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> start</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;found&quot;</span>, n_matches, <span class="st">&quot;matches in&quot;</span>, <span class="fu">round</span>(time_taken), <span class="st">&quot;seconds&quot;</span>))</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;found 100000 matches in 38 seconds&quot;</span></span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  X,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  X_2,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">threshold =</span> .<span class="dv">01</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">n_bands =</span> <span class="dv">40</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">band_width =</span> <span class="dv">8</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="at">r =</span> .<span class="dv">15</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>n_matches <span class="ot">&lt;-</span> <span class="fu">nrow</span>(joined_out)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>time_taken <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> start</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;found&quot;</span>, n_matches, <span class="st">&quot;matches in&quot;</span>, <span class="fu">round</span>(time_taken), <span class="st">&quot;seconds&quot;</span>))</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;found 100000 matches in 32 seconds&quot;</span></span></code></pre></div>
 <p>Zoomerjoin is able to easily find all pairs in just under 30s
 (perhaps longer on the runner that renders the website), even though the
 points lie in high-dimensional (d=100) space. This makes zoomerjoin a

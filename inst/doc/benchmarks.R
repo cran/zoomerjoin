@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,22 +7,23 @@ knitr::opts_chunk$set(
 ## ----setup, include=F---------------------------------------------------------
 library(tidyverse)
 
-## ---- echo=F------------------------------------------------------------------
+## ----echo=F-------------------------------------------------------------------
 sim_data <- read_csv("sim_data.csv")
-sim_data  %>%
-    mutate(
-           name = ifelse(name == "time", "Time Usage (s)", "Memory Usage (MB)"),
-           join_type = ifelse(join_type == "Jaccard Distance",
-                              "Jaccard Distance Join",
-                              "Euclidean Distance Joins"),
-           ) %>%
-    ggplot(aes(x=as.numeric(n), y=value, col = package, linetype = package)) +
-    geom_point() +
-    geom_line() +
-    facet_wrap(~ join_type + name, scales = 'free') +
-    scale_y_continuous("Time (s) / memory (MB)")
+sim_data %>%
+  mutate(
+    name = ifelse(name == "time", "Time Usage (s)", "Memory Usage (MB)"),
+    join_type = ifelse(join_type == "Jaccard Distance",
+      "Jaccard Distance Join",
+      "Euclidean Distance Joins"
+    ),
+  ) %>%
+  ggplot(aes(x = as.numeric(n), y = value, col = package, linetype = package)) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~ join_type + name, scales = "free") +
+  scale_y_continuous("Time (s) / memory (MB)")
 
-## ---- echo=T, eval=F----------------------------------------------------------
+## ----echo=T, eval=F-----------------------------------------------------------
 #  library(zoomerjoin)
 #  library(fuzzyjoin)
 #  library(tidyverse)
@@ -44,7 +45,7 @@ sim_data  %>%
 #  X_2 <- as.data.frame(X + .000000001)
 #  
 #  # Get time and memory use statistics for fuzzyjoin when performing jaccard join
-#  fuzzy_jaccard_bench <- function(n){
+#  fuzzy_jaccard_bench <- function(n) {
 #    time <- microbenchmark(
 #      stringdist_inner_join(data_1[1:n, ],
 #        data_2[1:n, ],
@@ -131,8 +132,8 @@ sim_data  %>%
 #  # Run Grid of Jaccard Benchmarks, Collect results into DF
 #  n <- seq(500, 4000, 250)
 #  names(n) <- n
-#  fuzzy_jacard_benches <- map_df(n, fuzzy_jaccard_bench, .id="n")
-#  zoomer_jacard_benches <- map_df(n, zoomer_jaccard_bench, .id="n")
+#  fuzzy_jacard_benches <- map_df(n, fuzzy_jaccard_bench, .id = "n")
+#  zoomer_jacard_benches <- map_df(n, zoomer_jaccard_bench, .id = "n")
 #  fuzzy_jacard_benches$package <- "fuzzyjoin"
 #  zoomer_jacard_benches$package <- "zoomerjoin"
 #  jaccard_benches <- bind_rows(fuzzy_jacard_benches, zoomer_jacard_benches)
@@ -141,16 +142,16 @@ sim_data  %>%
 #  # Run Grid of Euclidean Benchmarks, Collect results into DF
 #  n <- seq(250, 4000, 250)
 #  names(n) <- n
-#  fuzzy_euclid_benches <- map_df(n, fuzzy_euclid_bench, .id="n")
-#  zoomer_euclid_benches <- map_df(n, zoomer_euclid_bench, .id="n")
+#  fuzzy_euclid_benches <- map_df(n, fuzzy_euclid_bench, .id = "n")
+#  zoomer_euclid_benches <- map_df(n, zoomer_euclid_bench, .id = "n")
 #  fuzzy_euclid_benches$package <- "fuzzyjoin"
 #  zoomer_euclid_benches$package <- "zoomerjoin"
 #  euclid_benches <- bind_rows(fuzzy_euclid_benches, zoomer_euclid_benches)
 #  euclid_benches$join_type <- "Euclidean Distance"
 #  
 #  sim_data <- bind_rows(euclid_benches, jaccard_benches) %>%
-#      pivot_longer(c(time, memory)) %>%
-#      mutate(value = ifelse(name =="time", value / 10^9, value / 10^6)) # convert ns to s and bytes to Gb.
+#    pivot_longer(c(time, memory)) %>%
+#    mutate(value = ifelse(name == "time", value / 10^9, value / 10^6)) # convert ns to s and bytes to Gb.
 #  
 #  write_csv(sim_data, "sim_data.csv")
 
