@@ -410,7 +410,7 @@ two datasets:</p>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>n_matches <span class="ot">&lt;-</span> <span class="fu">nrow</span>(joined_out)</span>
 <span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>time_taken <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> start</span>
 <span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;found&quot;</span>, n_matches, <span class="st">&quot;matches in&quot;</span>, <span class="fu">round</span>(time_taken), <span class="st">&quot;seconds&quot;</span>))</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;found 100000 matches in 32 seconds&quot;</span></span></code></pre></div>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;found 100000 matches in 13 seconds&quot;</span></span></code></pre></div>
 <p>Zoomerjoin is able to easily find all pairs in just under 30s
 (perhaps longer on the runner that renders the website), even though the
 points lie in high-dimensional (d=100) space. This makes zoomerjoin a
