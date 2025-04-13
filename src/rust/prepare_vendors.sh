@@ -20,7 +20,9 @@ echo $(find . -name "ci" -type d) | xargs rm -rf
 rust_files=$(find . -type f -name "*.rs")
 
 for file in $rust_files; do
-    sed -i "s/^\s*\\/\{2,\}.*$//g" $file
+    if [[ ! "$file" == *zerocopy* ]]; then
+        sed -i "s/^\s*\\/\{2,\}.*$//g" $file
+    fi
 done
 
 cd ..
@@ -30,5 +32,6 @@ python rehash.py
 tar -cJ --no-xattrs -f vendor.tar.xz vendor
 
 sed -i "s/checksum.*//g" Cargo.lock
+# rm Cargo.lock
 
 ls -lhtr

@@ -1,6 +1,6 @@
 Package: zoomerjoin
 Title: Superlatively Fast Fuzzy Joins
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person("Beniamino", "Green", , "beniamino.green@yale.edu", role = c("aut", "cre", "cph")),
     person("Etienne", "Bacher", email = "etienne.bacher@protonmail.com", role = "ctb",
@@ -13,7 +13,7 @@ Description: Empowers users to fuzzily-merge data frames with millions or tens o
 License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
-SystemRequirements: Cargo (>= 1.56) (Rust's package manager), rustc (>=
+SystemRequirements: Cargo (>= 1.70) (Rust's package manager), rustc (>=
         1.70)
 Imports: collapse, dplyr, tibble, tidyr
 Suggests: babynames, covr, fuzzyjoin, igraph, knitr, microbenchmark,
@@ -24,16 +24,16 @@ URL: https://beniamino.org/zoomerjoin/,
         https://github.com/beniaminogreen/zoomerjoin
 BugReports: https://github.com/beniaminogreen/zoomerjoin/issues
 VignetteBuilder: knitr
-Depends: R (>= 2.10)
+Depends: R (>= 4.2)
 LazyData: true
 LazyDataCompression: xz
-Config/rextendr/version: 0.3.1.9000
+Config/rextendr/version: 0.3.1.9001
 NeedsCompilation: yes
-Packaged: 2024-09-24 00:16:22 UTC; beniamino
+Packaged: 2025-04-13 04:54:58 UTC; beniamino
 Author: Beniamino Green [aut, cre, cph],
   Etienne Bacher [ctb] (<https://orcid.org/0000-0002-9271-5075>),
   The authors of the dependency Rust crates [ctb, cph] (see inst/AUTHORS
     file for details)
 Maintainer: Beniamino Green <beniamino.green@yale.edu>
 Repository: CRAN
-Date/Publication: 2024-09-24 04:10:03 UTC
+Date/Publication: 2025-04-13 05:10:02 UTC

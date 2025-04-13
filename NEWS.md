@@ -1,3 +1,7 @@
+# zoomerjoin 0.2.1
+
+* Updated extendr version to comply with CRAN requirements
+
 # zoomerjoin 0.2.0
 
 # zoomerjoin 0.1.5
